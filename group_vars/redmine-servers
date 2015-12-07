@@ -1,0 +1,25 @@
+# ----------------------------------------------------------------------
+# データベースの redmine ユーザーのパスワード (変更推奨)
+db_passwd_redmine: Must_be_changed!
+# ----------------------------------------------------------------------
+
+# Redmineのチェックアウト元URL
+redmine_svn_url: http://svn.redmine.org/redmine/branches/3.2-stable
+
+# Redmineのデプロイ先ディレクトリ
+redmine_dir: /var/lib/redmine
+
+# Redmineのデプロイ先ディレクトリのオーナー:グループ
+redmine_dir_owner: www-data:www-data
+
+# Redmineで使用する日本語フォントファイル
+redmine_font_path: /usr/share/fonts/truetype/takao-gothic/TakaoPGothic.ttf
+
+# ダウンロードするRubyのソースコード
+ruby_url_dir: https://cache.ruby-lang.org/pub/ruby/2.2
+ruby_archive_version: ruby-2.2.3
+ruby_archive_ext: tar.bz2
+ruby_archive_name: "{{ ruby_archive_version }}.{{ ruby_archive_ext }}"
+
+ruby_file_name: /usr/local/bin/ruby
+work_dir: /tmp/redmine-setup
