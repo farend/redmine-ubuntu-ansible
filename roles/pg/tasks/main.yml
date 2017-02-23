@@ -1,13 +1,13 @@
 - name: PostgreSQL ユーザー作成
-  sudo: yes
-  sudo_user: postgres
+  become: yes
+  become_user: postgres
   postgresql_user:
     name=redmine
     password={{ db_passwd_redmine }}
 
 - name: PostgreSQL データベース作成
-  sudo: yes
-  sudo_user: postgres
+  become: yes
+  become_user: postgres
   postgresql_db:
     name=redmine
     encoding='UTF-8'
