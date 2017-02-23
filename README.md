@@ -31,7 +31,7 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 ```
 sudo apt-get update
 sudo apt-get install -y python-pip libpython-dev git libssl-dev
-sudo pip install ansible MarkupSafe
+sudo pip install ansible
 ```
 
 ### playbookのダウンロード
