@@ -10,7 +10,7 @@
 
 Ansibleを使ってRedmineを自動インストールするためのプレイブックです。以下のwebサイトで紹介されている手順におおむね準拠しています。
 
-[Redmine 3.3をUbuntu Server 16.04.2 LTSにインストールする手順](http://blog.redmine.jp/articles/3_3/install/ubuntu/)
+[Redmine 3.4をUbuntu Server 16.04.2 LTSにインストールする手順](http://blog.redmine.jp/articles/3_4/install/ubuntu/)
 
 
 ## システム構成
