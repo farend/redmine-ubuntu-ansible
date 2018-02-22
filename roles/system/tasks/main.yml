@@ -13,7 +13,7 @@
 - name: RubyとPassengerのビルドに必要な開発ツールやヘッダファイルのインストール
   sudo: yes
   apt:
-    name='build-essential,zlib1g-dev,libssl-dev,libreadline-dev,libyaml-dev,libcurl4-openssl-dev'
+    name='build-essential,zlib1g-dev,libssl-dev,libreadline-dev,libyaml-dev,libcurl4-openssl-dev,libffi-dev'
 
 - name:  PostgreSQLとヘッダファイルのインストール
   sudo: yes
