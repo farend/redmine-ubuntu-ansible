@@ -29,7 +29,7 @@
   changed_when: false
 
 - name: gemsパッケージのインストール
-  become: yes
+  become: no
   command:
     bundle install --path vendor/bundle
     chdir={{ redmine_dir }}

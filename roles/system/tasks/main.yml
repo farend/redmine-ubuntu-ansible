@@ -18,7 +18,7 @@
 - name:  PostgreSQLとヘッダファイルのインストール
   become: yes
   apt:
-    name='postgresql,postgresql-server-dev-9.5,python-psycopg2'
+    name='postgresql,postgresql-server-dev-10,python-psycopg2'
 
 - name:  Apacheとヘッダファイルのインストール
   become: yes
