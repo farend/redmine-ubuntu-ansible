@@ -43,8 +43,8 @@
 - name: DocumentRootの変更
   replace: 
     dest=/etc/apache2/sites-enabled/000-default.conf
-    regexp='DocumentRoot "/var/www/html"'
-    replace='DocumentRoot "/var/lib/redmine/public"'
+    regexp='DocumentRoot /var/www/html'
+    replace='DocumentRoot /var/lib/redmine/public'
 
 - name: redmine.confの作成
   become: yes
