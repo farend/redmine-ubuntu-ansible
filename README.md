@@ -2,12 +2,12 @@
 公式のredmineのansibleインストーラーが最新バージョンで動作しなかったため修正解決していくついでに関連パッケージの更新やパッケージのそぎ落としをしていく
 
 ## システム構成
-* Redmine 4
 * Ubuntu Server 18.04.2 LTS
 * PostgreSQL 10
-* Apache
+* Apache 2
 * ruby 2.5.3
-
+* Redmine 4.0-stable
+こちらの数字は設定ファイル等で固定されていますより新しいリリースがあり利用したい場合は別途書き換える必要があります。
 
 ### Ansibleとgitのインストール
 
