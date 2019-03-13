@@ -22,7 +22,7 @@ sudo apt install ansible
 
 ### playbookのダウンロード
 ```
-git clone https://github.com/16dyui/redmine-ansible.git
+git clone https://github.com/16dyui/redmine-ubuntu-ansible.git
 ```
 
 ### PostgreSQLに設定するパスワードの変更 (推奨)
