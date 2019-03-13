@@ -22,6 +22,7 @@ sudo apt install ansible
 環境によっては(初期言語やdocker内など)別途インストールが必要なパッケージ
 ```
 sudo apt install language-pack-ja
+sudo apt install sudo
 ```
 
 ### playbookのダウンロード
