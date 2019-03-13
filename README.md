@@ -6,7 +6,7 @@
 * PostgreSQL 10
 * Apache 2
 * ruby 2.5.3
-* Redmine 4.0-stable
+* Redmine 4.0-stable  
 こちらの数字は設定ファイル等で固定されていますより新しいリリースがあり利用したい場合は別途書き換える必要があります。
 
 ### Ansibleとgitのインストール
