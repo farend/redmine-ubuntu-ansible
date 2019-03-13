@@ -1,5 +1,5 @@
 # redmine-ansible
-公式のredmineのansibleインストーラーが最新バージョンで動作しなかったため修正解決していく
+公式のredmineのansibleインストーラーが最新バージョンで動作しなかったため修正解決していくついでに関連パッケージの更新やパッケージのそぎ落としをしていく
 
 ## システム構成
 * Redmine 4
@@ -13,7 +13,7 @@
 
 ```
 sudo apt update
-sudo apt install software-properties-common
+sudo apt install software-properties-common git
 sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt install ansible
 ```
