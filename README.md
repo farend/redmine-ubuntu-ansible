@@ -6,6 +6,7 @@
 * Ubuntu Server 18.04.2 LTS
 * PostgreSQL 10
 * Apache
+* ruby 2.5.3
 
 
 ### Ansibleとgitのインストール
