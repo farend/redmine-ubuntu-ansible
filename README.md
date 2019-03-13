@@ -1,12 +1,14 @@
 # redmine-ansible
 公式のredmineのansibleインストーラーが最新バージョンで動作しなかったため修正解決していくついでに関連パッケージの更新やパッケージのそぎ落としをしていく
+※ansibleの指定先がlocalhostですのでansibleを実行したサーバーにredmineやその他コンポーネントがインストールされますまたapacheの待ち受けが直下でredmineになります。
 
 ## システム構成
 * Ubuntu Server 18.04.2 LTS
 * PostgreSQL 10
 * Apache 2
 * ruby 2.5.3
-* Redmine 4.0-stable  
+* Redmine 4.0-stable
+
 こちらの数字は設定ファイル等で固定されていますより新しいリリースがあり利用したい場合は別途書き換える必要があります。
 
 ### Ansibleとgitのインストール
@@ -32,4 +34,4 @@ git clone https://github.com/16dyui/redmine-ansible.git
 cd redmine-ubuntu-ansible
 ansible-playbook -K -i hosts site.yml
 ```
-10〜20分ほどでインストールが完了します。webブラウザで `http://サーバIPアドレス/redmine` にアクセスしてください。Redmineの画面が表示されるはずです。
+10〜20分ほどでインストールが完了します。webブラウザで `http://サーバIPアドレス` にアクセスしてください。Redmineの画面が表示されるはずです。
