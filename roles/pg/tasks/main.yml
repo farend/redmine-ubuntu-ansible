@@ -1,3 +1,10 @@
+- name: start postgresql server
+  become: yes
+  become_user: postgres
+  service:
+    name=postgresql
+    state=started
+
 - name: PostgreSQL ユーザー作成
   become: yes
   become_user: postgres
