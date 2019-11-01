@@ -15,6 +15,7 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 
 ## システム構成
 
+* Ansible 2.8.5
 * Redmine 4.0
 * Ubuntu Server 18.04.3 LTS
 * PostgreSQL
@@ -31,7 +32,7 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 ```
 sudo apt-get update
 sudo apt-get install -y python-pip libpython-dev git libssl-dev
-sudo pip install ansible
+sudo pip install ansible\==2.8.5
 ```
 
 ### playbookのダウンロード
