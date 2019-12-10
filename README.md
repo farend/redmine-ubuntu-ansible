@@ -20,7 +20,6 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 * Ubuntu Server 18.04.3 LTS
 * PostgreSQL
 * Apache
-* Docker
 
 
 ## Redmineのインストール手順
@@ -31,8 +30,11 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 ### Ansibleとgitのインストール
 
 ```
+sudo apt-get update
+====== Dockerの場合=====
 apt-get update
 apt-get install -y sudo
+========================
 sudo apt-get install -y python-pip libpython-dev git libssl-dev iproute2
 sudo pip install ansible\==2.8.5
 ```
