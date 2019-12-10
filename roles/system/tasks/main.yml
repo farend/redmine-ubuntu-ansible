@@ -16,10 +16,12 @@
     name='postgresql,postgresql-server-dev-10,python-psycopg2'
 
 - name: create locale ja_JP.UTF-8
+  become: yes
   locale_gen:
     name: "{{ redmine_locale }}"
 
 - name: set locale to ja_JP.UTF-8
+  become: yes
   command: update-locale LANG={{ redmine_locale }}
   when: ansible_env.LANG | default('') != "{{ redmine_locale }}"
 
