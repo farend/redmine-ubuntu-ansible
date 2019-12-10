@@ -18,6 +18,6 @@
   postgresql_db:
     name=redmine
     encoding='UTF-8'
-    lc_collate='ja_JP.UTF-8'
-    lc_ctype='ja_JP.UTF-8'
+    lc_collate= {{redmine_locale }}
+    lc_ctype= {{redmine_locale }}
     template='template0'
