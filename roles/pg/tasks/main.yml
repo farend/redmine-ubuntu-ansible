@@ -1,6 +1,5 @@
 - name: start postgresql server
   become: yes
-  become_user: postgres
   service:
     name=postgresql
     state=started
