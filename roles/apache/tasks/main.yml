@@ -26,7 +26,7 @@
 - name: PassengerのApache用モジュールのインストール
   become: yes
   command:
-    passenger-install-apache2-module --auto
+    passenger-install-apache2-module --auto --languages ruby
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
   when: result.rc == 1
