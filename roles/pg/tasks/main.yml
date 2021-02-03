@@ -1,3 +1,9 @@
+- name: start postgresql server
+  become: yes
+  service:
+    name=postgresql
+    state=started
+
 - name: PostgreSQL ユーザー作成
   become: yes
   become_user: postgres
@@ -11,6 +17,6 @@
   postgresql_db:
     name=redmine
     encoding='UTF-8'
-    lc_collate='ja_JP.UTF-8'
-    lc_ctype='ja_JP.UTF-8'
+    lc_collate= {{redmine_locale }}
+    lc_ctype= {{redmine_locale }}
     template='template0'
