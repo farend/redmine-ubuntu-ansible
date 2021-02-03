@@ -1,0 +1,35 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: ubuntu:18.04
+    steps:
+      - run:
+          name: Setup
+          command: |
+            apt-get update
+            apt-get install -y sudo iproute2
+            sudo apt-get install -y python-pip libpython-dev git libssl-dev
+            sudo pip install ansible\==2.8.5
+      - checkout
+      - run:
+          name: Execute ansible playbook
+          # Test without -K option to make it non-interactive
+          command: ansible-playbook -i hosts site.yml
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "00 1 * * 1" # Every Monday at 1:00(UTC)
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
