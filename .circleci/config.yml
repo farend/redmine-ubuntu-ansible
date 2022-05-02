@@ -3,15 +3,15 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ubuntu:18.04
+      - image: ubuntu:20.04
     steps:
       - run:
           name: Setup
           command: |
             apt-get update
-            apt-get install -y sudo iproute2
-            sudo apt-get install -y python-pip libpython-dev git libssl-dev
-            sudo pip install ansible\==2.8.5
+            apt-get install -y sudo iproute2 libpq-dev gcc
+            sudo apt-get install -y python3-pip libpython2-dev git libssl-dev
+            sudo pip install ansible\==5.7.0 psycopg2
       - checkout
       - run:
           name: Execute ansible playbook

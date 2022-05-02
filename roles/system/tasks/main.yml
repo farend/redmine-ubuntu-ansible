@@ -13,7 +13,7 @@
 - name:  PostgreSQLとヘッダファイルのインストール
   become: yes
   apt:
-    name='postgresql,postgresql-server-dev-10,python-psycopg2'
+    name='postgresql,libpq-dev'
 
 - name: create locale ja_JP.UTF-8
   become: yes
@@ -28,12 +28,12 @@
 - name:  Apacheとヘッダファイルのインストール
   become: yes
   apt:
-    name='apache2,apache2-dev,libapr1-dev,libaprutil1-dev'
+    name='apache2,apache2-dev'
 
 - name:  ImageMagickとヘッダファイル・日本語フォントのインストール
   become: yes
   apt:
-    name='imagemagick,libmagick++-dev,fonts-takao-pgothic'
+    name='imagemagick,fonts-takao-pgothic'
 
 - name:  そのほかのツールのインストール
   become: yes
