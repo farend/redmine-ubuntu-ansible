@@ -9,8 +9,8 @@ jobs:
           name: Setup
           command: |
             apt-get update
-            apt-get install -y sudo iproute2 libpq-dev gcc
-            sudo apt-get install -y python3-pip libpython2-dev git libssl-dev
+            apt-get install -y sudo iproute2
+            sudo apt-get install -y python3-pip libpython2-dev git libssl-dev libpq-dev gcc
             sudo pip install ansible\==5.7.0 psycopg2
       - checkout
       - run:

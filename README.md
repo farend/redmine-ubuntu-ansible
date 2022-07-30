@@ -34,10 +34,10 @@ sudo apt-get update
 
 ========== Dockerの場合=========
 apt-get update
-apt-get install -y sudo iproute2 libpq-dev gcc
+apt-get install -y sudo iproute2
 ================================
 
-sudo apt-get install -y python3-pip libpython2-dev git libssl-dev
+sudo apt-get install -y python3-pip libpython2-dev git libssl-dev libpq-dev gcc
 sudo pip install ansible\==5.7.0 psycopg2
 ```
 
