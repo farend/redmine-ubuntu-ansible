@@ -4,6 +4,18 @@
     name=postgresql
     state=started
 
+- name: posgresユーザになるためACLがインストールされているか確認
+  stat:
+    path: /usr/local/bin/acl
+  register:
+    result
+
+- name: ACLインストール
+  become: yes
+  apt:
+    name='acl'
+  when: not result.stat.exists
+
 - name: PostgreSQL ユーザー作成
   become: yes
   become_user: postgres
