@@ -4,7 +4,7 @@
     name=postgresql
     state=started
 
-- name: posgresユーザになるためACLがインストールされているか確認
+- name: postgresユーザになるためACLがインストールされているか確認
   stat:
     path: /usr/local/bin/acl
   register:
