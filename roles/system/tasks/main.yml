@@ -1,5 +1,5 @@
 # PostgreSQLでlc_collateとlc_ctypeに ja_JP.UTF-8 を指定するために必要
-- name: apt-get update
+- name: apt update
   become: yes
   apt:
     update_cache=yes
@@ -15,15 +15,18 @@
   apt:
     name='postgresql,libpq-dev'
 
-- name: create locale ja_JP.UTF-8
+- name: Install 'language-pack-ja' and create locale ja_JP.UTF-8
   become: yes
-  locale_gen:
-    name: "{{ redmine_locale }}"
+  apt:
+    name='language-pack-ja-base language-pack-ja'
 
 - name: set locale to ja_JP.UTF-8
   become: yes
-  command: update-locale LANG={{ redmine_locale }}
-  when: ansible_env.LANG | default('') != [ redmine_locale ]
+  command: localectl set-locale LANG={{ redmine_locale }}
+
+- name: source /etc/default/locale
+  become: yes
+  command: source /etc/default/locale
 
 - name:  Apacheとヘッダファイルのインストール
   become: yes

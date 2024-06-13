@@ -30,15 +30,15 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 ### Ansibleとgitのインストール
 
 ```
-sudo apt-get update
+sudo apt update
 
 ========== Dockerの場合=========
 apt-get update
 apt-get install -y sudo iproute2
 ================================
 
-sudo apt-get install -y python3-pip libpython2-dev git libssl-dev libpq-dev gcc
-sudo pip install ansible\==5.7.0 psycopg2
+sudo apt install -y ansible-core libpython3-dev python3-psycopg2 git libssl-dev libpq-dev gcc
+
 ```
 
 ### playbookのダウンロード
