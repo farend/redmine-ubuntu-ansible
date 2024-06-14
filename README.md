@@ -37,7 +37,7 @@ apt-get update
 apt-get install -y sudo iproute2
 ================================
 
-sudo apt install -y ansible-core libpython3-dev python3-psycopg2 git libssl-dev libpq-dev gcc
+sudo apt install -y ansible-core libpython3-dev python3-psycopg2 git libssl-dev libpq-dev gcc language-pack-ja
 
 ```
 
