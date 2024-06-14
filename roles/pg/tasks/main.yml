@@ -13,22 +13,22 @@
 - name: ACLインストール
   become: yes
   apt:
-    name='acl'
+    name: "acl"
   when: not result.stat.exists
 
 - name: PostgreSQL ユーザー作成
   become: yes
   become_user: postgres
   postgresql_user:
-    name=redmine
-    password={{ db_passwd_redmine }}
+    name: "redmine"
+    password: "{{ db_passwd_redmine }}"
 
 - name: PostgreSQL データベース作成
   become: yes
   become_user: postgres
   postgresql_db:
-    name=redmine
-    encoding='UTF-8'
-    lc_collate= {{redmine_locale }}
-    lc_ctype= {{redmine_locale }}
-    template='template0'
+    name: "redmine"
+    encoding: "UTF-8"
+    lc_collate: "{{ redmine_locale }}"
+    lc_ctype: "{{ redmine_locale }}"
+    template: "template0"
