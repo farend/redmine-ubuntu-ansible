@@ -16,15 +16,14 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 ## システム構成
 
 * Ansible 5.7.0
-* Redmine 4.2
-* Ubuntu Server 20.04.4 LTS
+* Redmine 5.1
+* Ubuntu Server 24.04 LTS
 * PostgreSQL
 * Apache
 
-
 ## Redmineのインストール手順
 
-インストール直後の Ubuntu 20.04 にログインし以下の操作を行ってください。
+インストール直後の Ubuntu Server にログインし以下の操作を行ってください。
 
 
 ### Ansibleとgitのインストール
@@ -37,8 +36,8 @@ apt-get update
 apt-get install -y sudo iproute2
 ================================
 
-sudo apt install -y ansible-core libpython3-dev python3-psycopg2 git libssl-dev libpq-dev gcc language-pack-ja
-
+sudo apt install -y python3-pip libpython2-dev git libssl-dev libpq-dev gcc
+sudo pip install ansible psycopg2
 ```
 
 ### playbookのダウンロード
