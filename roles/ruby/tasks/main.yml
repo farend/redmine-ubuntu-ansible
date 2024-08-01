@@ -46,11 +46,11 @@
     chdir={{ work_dir }}/{{ ruby_archive_version }}
   when: ruby_test_vars.rc == 1
 
-- name: bundlerのインストール
-  become: yes
-  gem:
-    name=bundler
-    user_install=no
-    version=1.17.3
-  environment:
-    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+#- name: bundlerのインストール
+#  become: yes
+#  gem:
+#    name=bundler
+#    user_install=no
+#    version=1.17.3
+#  environment:
+#    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"

@@ -1,11 +1,22 @@
+- name: mkdir /var/lib/redmine
+  become: yes
+  command:
+    mkdir /var/lib/redmine
+
+- name: chown www-data /var/lib/redmine
+  become: yes
+  command:
+   chown www-data /var/lib/redmine
+
 - name: Redmineのソースコードをチェックアウト
   become: yes
-  subversion:
-    repo={{ redmine_svn_url }}
-    dest={{ redmine_dir }}
+  become_user: www-data
+  command:
+    svn co https://svn.redmine.org/redmine/branches/5.1-stable /var/lib/redmine
 
 - name: database.ymlの作成
   become: yes
+  become_user: www-data
   template:
     src=database.yml
     dest={{ redmine_dir }}/config/database.yml
@@ -15,6 +26,7 @@
 
 - name: configuration.ymlの作成
   become: yes
+  become_user: www-data
   template:
     src=configuration.yml
     dest={{ redmine_dir }}/config/configuration.yml
@@ -50,6 +62,7 @@
 
 - name: secret tokenの作成
   become: yes
+  become_user: www-data
   command:
     bundle exec rake generate_secret_token
     chdir={{ redmine_dir }}
@@ -59,6 +72,7 @@
 
 - name: データベースのマイグレーション
   become: yes
+  become_user: www-data
   command:
     bundle exec rake db:migrate
     chdir={{ redmine_dir }}
