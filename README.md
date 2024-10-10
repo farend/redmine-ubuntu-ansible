@@ -10,8 +10,7 @@
 
 Ansibleを使ってRedmineを自動インストールするためのプレイブックです。以下のwebサイトで紹介されている手順におおむね準拠しています。
 
-[Redmine 4.2をUbuntu 20.04 LTSにインストールする手順](https://blog.redmine.jp/articles/4_2/install/ubuntu/)
-
+[Redmine 5.1 をUbuntu 24.04 LTSにインストールする手順](https://blog.redmine.jp/articles/5_1/install/ubuntu24/)
 
 ## システム構成
 
@@ -30,14 +29,8 @@ Ansibleを使ってRedmineを自動インストールするためのプレイブ
 
 ```
 sudo apt update
-
-========== Dockerの場合=========
-apt-get update
-apt-get install -y sudo iproute2
-================================
-
-sudo apt install -y python3-pip libpython2-dev git libssl-dev libpq-dev gcc
-sudo pip install ansible psycopg2
+sudo apt install -y python3-psycopg2 ansible-core git libssl-dev libpq-dev gcc
+# 途中でタイムゾーンの設定が求められるため適切な地域を選択してください
 ```
 
 ### playbookのダウンロード

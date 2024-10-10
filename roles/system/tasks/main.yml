@@ -15,9 +15,20 @@
   apt:
     name='postgresql,libpq-dev'
 
-- name: set locale to ja_JP.UTF-8
+- name: Generate ja_JP.UTF-8 locale
   become: yes
-  command: localectl set-locale LANG={{ redmine_locale }}
+  command: locale-gen ja_JP.UTF-8
+
+- name: Update system locale to ja_JP.UTF-8
+  become: yes
+  command: update-locale LANG=ja_JP.UTF-8
+
+- name: Ensure locale is set in /etc/default/locale
+  become: yes
+  lineinfile:
+    path: /etc/default/locale
+    line: 'LANG=ja_JP.UTF-8'
+    create: yes
 
 - name:  Apacheとヘッダファイルのインストール
   become: yes
