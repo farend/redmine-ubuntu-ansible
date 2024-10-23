@@ -4,7 +4,15 @@
   apt:
     update_cache=yes
     cache_valid_time=86400
+- name: set locale to ja_JP.UTF-8 1/2
+  become: yes
+  apt:
+    name='locales'
+- name: set locale to ja_JP.UTF-8 2/2
+  become: yes
+  command: localectl set-locale LANG={{ redmine_db_locale }}
 
+# Redmine を動かすために必要なパッケージのインストール
 - name: RubyとPassengerのビルドに必要な開発ツールやヘッダファイルのインストール
   become: yes
   apt:
@@ -14,21 +22,6 @@
   become: yes
   apt:
     name='postgresql,libpq-dev'
-
-- name: Generate ja_JP.UTF-8 locale
-  become: yes
-  command: locale-gen ja_JP.UTF-8
-
-- name: Update system locale to ja_JP.UTF-8
-  become: yes
-  command: update-locale LANG=ja_JP.UTF-8
-
-- name: Ensure locale is set in /etc/default/locale
-  become: yes
-  lineinfile:
-    path: /etc/default/locale
-    line: 'LANG=ja_JP.UTF-8'
-    create: yes
 
 - name:  Apacheとヘッダファイルのインストール
   become: yes

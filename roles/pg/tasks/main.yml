@@ -20,15 +20,16 @@
   become: yes
   become_user: postgres
   postgresql_user:
-    name: "redmine"
+    name: "{{ redmine_db_user }}"
     password: "{{ db_passwd_redmine }}"
 
 - name: PostgreSQL データベース作成
   become: yes
   become_user: postgres
   postgresql_db:
-    name: "redmine"
+    name: "{{ redmine_db_name }}"
+    owner: "{{ redmine_db_user }}"
     encoding: "UTF-8"
-    lc_collate: "{{ redmine_locale }}"
-    lc_ctype: "{{ redmine_locale }}"
+    lc_collate: "{{ redmine_db_locale }}"
+    lc_ctype: "{{ redmine_db_locale }}"
     template: "template0"
