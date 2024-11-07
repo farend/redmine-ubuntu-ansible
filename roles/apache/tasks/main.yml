@@ -6,22 +6,13 @@
     group: "{{ redmine_dir_group }}"
     recurse: yes
 
-- name: Passengerがインストールされているか確認
+- name: PassengerのApache用設定ファイルが存在するか確認
   command:
-    test -f /usr/local/bin/passenger-install-apache2-module
+    test -f /etc/apache2/conf-available/redmine.conf
   register:
     result
   failed_when: result.rc not in [0, 1]
   changed_when: false
-
-- name: Passengerをインストール
-  become: yes
-  gem:
-    name=passenger
-    user_install=no
-  environment:
-    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
-  when: result.rc == 1
 
 - name: PassengerのApache用モジュールのインストール
   become: yes

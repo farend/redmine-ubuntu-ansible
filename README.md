@@ -10,35 +10,37 @@
 
 Ansibleを使ってRedmineを自動インストールするためのプレイブックです。以下のwebサイトで紹介されている手順におおむね準拠しています。
 
-[Redmine 4.2をUbuntu 20.04 LTSにインストールする手順](https://blog.redmine.jp/articles/4_2/install/ubuntu/)
-
+[Redmine 5.1 をUbuntu 24.04 LTSにインストールする手順](https://blog.redmine.jp/articles/5_1/install/ubuntu24/)
 
 ## システム構成
 
-* Ansible 5.7.0
-* Redmine 4.2
-* Ubuntu Server 20.04.4 LTS
+* Ansible 2.17.5
+* Redmine 5.1
+* Ubuntu Server 24.04 LTS
 * PostgreSQL
 * Apache
 
-
 ## Redmineのインストール手順
 
-インストール直後の Ubuntu 20.04 にログインし以下の操作を行ってください。
+インストール直後の Ubuntu Server にログインし以下の操作を行ってください。
 
 
-### Ansibleとgitのインストール
+### Ansibleと必要パッケージのインストール
 
+[Installing Ansible on specific operating systems — Ansible Community Documentation](https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html#installing-ansible-on-ubuntu) を参考にして Ansible をインストールします。
+
+```bash
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
 ```
-sudo apt-get update
 
-========== Dockerの場合=========
-apt-get update
-apt-get install -y sudo iproute2
-================================
+git や [PostgreSQL の操作](https://docs.ansible.com/ansible/latest/collections/community/postgresql/postgresql_db_module.html) で必要なパッケージをインストールします。
 
-sudo apt-get install -y python3-pip libpython2-dev git libssl-dev libpq-dev gcc
-sudo pip install ansible\==5.7.0 psycopg2
+```bash
+sudo apt update
+sudo apt install git python3-psycopg2
 ```
 
 ### playbookのダウンロード
@@ -55,10 +57,13 @@ git clone https://github.com/farend/redmine-ubuntu-ansible.git
 
 下記コマンドを実行してください。Redmineの自動インストールが開始されます。
 
+> [!NOTE]
+>
+> "BECOME password"にsudoを実行するためのパスワードを入力してください。
+
 ```
 cd redmine-ubuntu-ansible
 ansible-playbook -K -i hosts site.yml
-==> "BECOME password"にsudoを実行するためのパスワードを入力してください。
 ```
 
 10〜20分ほどでインストールが完了します。webブラウザで `http://サーバIPアドレス/redmine` にアクセスしてください。Redmineの画面が表示されるはずです。

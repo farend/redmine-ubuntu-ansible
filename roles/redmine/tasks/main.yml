@@ -1,11 +1,22 @@
+- name: mkdir /var/lib/redmine
+  become: yes
+  command:
+    mkdir -p {{ redmine_dir }}
+
+- name: chown www-data /var/lib/redmine
+  become: yes
+  command:
+   chown {{ redmine_dir_owner }} {{ redmine_dir }}
+
 - name: Redmineのソースコードをチェックアウト
   become: yes
-  subversion:
-    repo={{ redmine_svn_url }}
-    dest={{ redmine_dir }}
+  become_user: "{{ redmine_dir_owner }}"
+  command:
+    svn co {{ redmine_svn_url }} {{ redmine_dir }}
 
 - name: database.ymlの作成
   become: yes
+  become_user: "{{ redmine_dir_owner }}"
   template:
     src=database.yml
     dest={{ redmine_dir }}/config/database.yml
@@ -15,6 +26,7 @@
 
 - name: configuration.ymlの作成
   become: yes
+  become_user: "{{ redmine_dir_owner }}"
   template:
     src=configuration.yml
     dest={{ redmine_dir }}/config/configuration.yml
@@ -28,10 +40,30 @@
   failed_when: result_test_gemfile.rc not in [0, 1]
   changed_when: false
 
-- name: gemsパッケージのインストール
+- name: gemsパッケージのインストール 1/3
+  become: yes
+  become_user: "{{ redmine_dir_owner }}"
+  template:
+    src=Gemfile.local
+    dest={{ redmine_dir }}/Gemfile.local
+    force=no
+  when:
+    result_test_gemfile.rc == 1
+
+- name: gemsパッケージのインストール 2/3
   become: yes
   command:
-    bundle install --path vendor/bundle
+    bundle config set --local without 'development test'
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  when:
+    result_test_gemfile.rc == 1
+
+- name: gemsパッケージのインストール 3/3
+  become: yes
+  command:
+    bundle install
     chdir={{ redmine_dir }}
   environment:
     PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
@@ -50,6 +82,7 @@
 
 - name: secret tokenの作成
   become: yes
+  become_user: "{{ redmine_dir_owner }}"
   command:
     bundle exec rake generate_secret_token
     chdir={{ redmine_dir }}
@@ -59,6 +92,7 @@
 
 - name: データベースのマイグレーション
   become: yes
+  become_user: "{{ redmine_dir_owner }}"
   command:
     bundle exec rake db:migrate
     chdir={{ redmine_dir }}
