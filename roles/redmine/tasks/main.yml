@@ -112,11 +112,14 @@
   when:
     result_database_yml is changed
 
-- name: farend_basicテーマのダウンロード
+- name: farend_basicテーマのダウンロードと展開
   become: yes
-  git:
-    repo=https://github.com/farend/redmine_theme_farend_basic.git
-    dest={{ redmine_dir }}/public/themes/farend_basic
+  shell: |
+    wget -O {{ work_dir }}/farend_basic.tar.gz https://github.com/farend/redmine_theme_farend_basic/archive/refs/tags/1.5.tar.gz
+    mkdir -p {{ redmine_dir }}/themes/farend_basic
+    tar xzf {{ work_dir }}/farend_basic.tar.gz -C {{ redmine_dir }}/themes/farend_basic --strip-components=1
+  when:
+    result_database_yml is changed
 
 - name: テーマをfarend_basicに切り替え
   become: yes
@@ -172,3 +175,13 @@
     RAILS_ENV: production
   when:
     result_database_yml is changed
+
+- name: CSS や JavaScript、画像などを public/assets ディレクトリ配置
+  become: yes
+  command:
+    bundle exec rake assets:clobber assets:precompile
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+    RAILS_RELATIVE_URL_ROOT: "{{ redmine_relative_url_root }}"
