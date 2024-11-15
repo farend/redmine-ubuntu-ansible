@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  schedule:
+    - cron: '0 1 * * 1'  # 毎週月曜日の午前1時(UTC)に実行
+
+jobs:
+  ci:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup
+        run: |
+          sudo apt update
+          sudo apt install --yes software-properties-common
+          sudo add-apt-repository --yes --update ppa:ansible/ansible
+          sudo apt install --yes ansible git python3-psycopg2
+
+      - name: Execute ansible playbook
+        # Test without -K option to make it non-interactive
+        run: ansible-playbook -i hosts site.yml
+
+      - name: Health check
+        run: curl --silent http://localhost/redmine/login | grep -q 'ログイン'
