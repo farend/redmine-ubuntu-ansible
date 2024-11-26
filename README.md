@@ -3,22 +3,23 @@
 
 最小構成でインストールしたUbuntu ServerにRedmineを自動インストールするためのAnsibleプレイブックです。
 
-コマンド6個実行するだけで、あとはしばらく放置すればインストールが完了します。
+`ansible-playbook` を実行するだけで、あとはしばらく放置すればインストールが完了します。
 
 
 ## 概要
 
 Ansibleを使ってRedmineを自動インストールするためのプレイブックです。以下のwebサイトで紹介されている手順におおむね準拠しています。
 
-[Redmine 5.1 をUbuntu 24.04 LTSにインストールする手順](https://blog.redmine.jp/articles/5_1/install/ubuntu24/)
+[Redmine 6.0 をUbuntu 24.04 LTSにインストールする手順](https://blog.redmine.jp/articles/6_0/install/ubuntu24/)
 
 ## システム構成
 
 * Ansible 2.17.5
 * Redmine 6.0
 * Ubuntu Server 24.04 LTS
-* PostgreSQL
-* Apache
+* PostgreSQL 16.4
+* Apache (Railsの実行にはPassengerを使用)
+* Ruby 3.3.6
 
 ## Redmineのインストール手順
 

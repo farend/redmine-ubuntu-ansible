@@ -1,16 +1,19 @@
 # PostgreSQLでlc_collateとlc_ctypeに ja_JP.UTF-8 を指定するために必要
+# 海外業者のサーバなども考慮して念のために実行するもので、ロケール設定は変更しない
 - name: apt update
   become: yes
   apt:
     update_cache=yes
     cache_valid_time=86400
-- name: set locale to ja_JP.UTF-8 1/2
+- name: Generate ja_JP.UTF-8 locale 1/3
   become: yes
   apt:
-    name='locales'
-- name: set locale to ja_JP.UTF-8 2/2
+    name='language-pack-ja'
+- name: Generate ja_JP.UTF-8 locale 2/3
   become: yes
-  command: localectl set-locale LANG={{ redmine_db_locale }}
+  command: locale-gen ja_JP.UTF-8
+- name: Generate ja_JP.UTF-8 locale 3/3
+  shell: localectl list-locales | grep ja_JP.UTF-8
 
 # Redmine を動かすために必要なパッケージのインストール
 - name: RubyとPassengerのビルドに必要な開発ツールやヘッダファイルのインストール
